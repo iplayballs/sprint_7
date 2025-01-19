@@ -26,19 +26,23 @@ public class OrderData {
     public enum Color {
         BLACK,
         GREY,
-        BLACK_OR_GREY
+        BLACK_OR_GREY,
+        NO_COLOR
     }
 
-    public void setColor(String color){
+    public void setColor(Color color){
         switch (color) {
-            case "BLACK":
+            case BLACK:
                 this.color = new String[] {"BLACK"};
                 break;
-            case "GREY":
+            case GREY:
                 this.color = new String[] {"GREY"};
                 break;
-            case "BLACK_OR_GREY":
+            case BLACK_OR_GREY:
                 this.color = new String[] {"BLACK", "GREY"};
+                break;
+            case NO_COLOR:
+                this.color = new String[] {""};
                 break;
             default:
                 this.color = new String[] {};

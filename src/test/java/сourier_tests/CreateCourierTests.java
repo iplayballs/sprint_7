@@ -51,7 +51,7 @@ public void testCreateCourierWithRequiredAndOptionalFields() {
         assertThat("В теле ответа должно прийти \"ok\": true, пришло \"ok\": " + response.jsonPath().getBoolean("ok"), response.jsonPath().getBoolean("ok"), equalTo(true));
     }
 
-    @DisplayName("Создание курьера с полями обязательным полем login")
+    @DisplayName("Создание курьера с обязательным полем login")
     @Description("Проверяем код ответа создания курьера 400 и содержание body ответа \"message\": \"Недостаточно данных для создания учетной записи\"")
     @Test
     public void testCreateCourierWithRequiredFieldLogin() {
@@ -82,7 +82,7 @@ public void testCreateCourierWithRequiredAndOptionalFields() {
     }
 
     @DisplayName("Создание курьера с уже существующим login")
-    @Description("Проверяем код ответа создания курьера 400 и содержание body ответа \"message\": \"Недостаточно данных для создания учетной записи\"")
+    @Description("Проверяем код ответа создания курьера 400 и содержание body ответа \"message\": \"Этот логин уже используется\"")
     @Test
     public void testCreateCourierWithExistLogin() {
         courierData = new CourierData();
@@ -95,7 +95,7 @@ public void testCreateCourierWithRequiredAndOptionalFields() {
         courierData.setPassword(CourierDataGenerate.generatePassword());
         Response response = courierApi.createCourier(courierData);
 
-        assertThat("Код ответа должен быть 409, пришел " + response.getStatusCode(), response.getStatusCode(), equalTo(409));
+        assertThat("Код ответа должен быть 409, пришел " + response.getStatusCode(), response.getStatusCode(), equalTo(HttpStatus.SC_CONFLICT));
         assertThat("В теле ответа должно прийти \"message\": \"Этот логин уже используется\", пришло \"message\": " + response.jsonPath().getString("message"), response.jsonPath().getString("message"), equalTo("Этот логин уже используется"));
     }
 

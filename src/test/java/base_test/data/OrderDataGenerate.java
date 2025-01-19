@@ -79,5 +79,19 @@ public class OrderDataGenerate {
         Random random = new Random();
         return random.nextInt(numberOfOrdersToCreate) + 1;
     }
+
+    public static OrderData createOrderData(OrderData.Color color) {
+        OrderData orderData = new OrderData();
+        orderData.setFirstName(OrderDataGenerate.generateFirstName());
+        orderData.setLastName(OrderDataGenerate.generateLastName());
+        orderData.setAddress(OrderDataGenerate.generateAddress());
+        orderData.setMetroStation(String.valueOf(OrderDataGenerate.generatMemetroStation()));
+        orderData.setPhone(OrderDataGenerate.generatePhone());
+        orderData.setRentTime(String.valueOf(OrderDataGenerate.generateRentTime()));
+        orderData.setDeliveryDate(OrderDataGenerate.generateDeliveryDate());
+        orderData.setComment(OrderDataGenerate.generateComment());
+        orderData.setColor(color);
+        return orderData;
+    }
 }
 
